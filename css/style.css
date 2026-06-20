@@ -537,12 +537,33 @@ h2 {
         top: 5px; right: 5px;
     }
 
-    /* Thu nhỏ Typography chung */
+    /* Thu nhỏ Typography chung và Khung viền */
     .glitch-text {
         font-size: 2rem;
     }
     h2 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+    .hologram-border {
+        padding: 20px 15px;
+    }
+
+    /* Thu nhỏ Nguyên tắc hoạt động */
+    .space-item {
+        padding: 10px;
+    }
+    .icon-neon {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    .space-item h3 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+    .space-item p {
+        font-size: 0.9rem;
+        line-height: 1.4;
     }
     
     /* MODAL ĐIỆN THOẠI CHUẨN */
@@ -559,15 +580,15 @@ h2 {
         gap: 20px;
     }
     .modal-content img {
-        height: 150px; /* Thu nhỏ ảnh để chừa chỗ cho text */
+        height: 120px; /* Thu nhỏ ảnh thêm nữa để chừa chỗ cho text */
     }
     .role-details h3 {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
+        font-size: 1.3rem;
+        margin-bottom: 10px;
     }
     .role-details ul li {
-        font-size: 0.95rem; /* Thu nhỏ chữ để dễ đọc, không bị hoảng */
-        line-height: 1.5;
+        font-size: 0.9rem; /* Thu nhỏ chữ để dễ đọc, không bị hoảng */
+        line-height: 1.4;
         margin-bottom: 5px;
     }
     
