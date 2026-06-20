@@ -75,6 +75,10 @@ h2 {
     letter-spacing: 4px;
 }
 
+.mobile-title {
+    display: none;
+}
+
 /* Mega CTA Button */
 .primary-cta-container {
     margin-top: 10px;
@@ -542,8 +546,14 @@ h2 {
     }
 
     /* Thu nhỏ Typography chung và Khung viền */
+    .desktop-title {
+        display: none;
+    }
+    .mobile-title {
+        display: inline-block;
+    }
     .glitch-text {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
     h2 {
         font-size: 1.3rem;
