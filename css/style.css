@@ -1,0 +1,503 @@
+:root {
+    --bg-space: #030508;
+    --neon-cyan: #00f0ff;
+    --neon-blue: #0066ff;
+    --neon-purple: #bd00ff;
+    --text-main: #e2e8f0;
+    --text-dim: #94a3b8;
+    --danger: #ff0055;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-space);
+    color: var(--text-main);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Starfield Canvas */
+#space-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+/* Main Layout */
+.space-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+/* Typography */
+h1, h2, h3 {
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+}
+
+h2 {
+    color: var(--neon-cyan);
+    font-size: 2rem;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+/* Header */
+.cyber-header {
+    text-align: center;
+    padding: 80px 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.glitch-text {
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    text-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
+    letter-spacing: 4px;
+}
+
+/* Mega CTA Button */
+.primary-cta-container {
+    margin-top: 10px;
+    z-index: 10;
+}
+
+.mega-neon-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 50px;
+    background: rgba(0, 240, 255, 0.05);
+    border: 2px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    border-radius: 4px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.mega-neon-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,240,255,0.4), transparent);
+    transition: 0.5s;
+}
+
+.mega-neon-btn:hover::before {
+    left: 100%;
+}
+
+.mega-neon-btn:hover {
+    background: var(--neon-cyan);
+    color: #000;
+    box-shadow: 0 0 50px rgba(0, 240, 255, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+
+.mega-neon-btn i {
+    font-size: 1.8rem;
+    animation: pulseIcon 2s infinite alternate;
+}
+
+@keyframes pulseIcon {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2); }
+}
+
+/* Borders & Boxes */
+.hologram-border {
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    padding: 50px;
+    position: relative;
+    background: linear-gradient(180deg, rgba(0, 240, 255, 0.03) 0%, rgba(0,0,0,0.8) 100%);
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+}
+
+.hologram-border::before, .hologram-border::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--neon-cyan);
+}
+
+.hologram-border::before {
+    top: -3px; left: -3px;
+    border-right: none; border-bottom: none;
+}
+
+.hologram-border::after {
+    bottom: -3px; right: -3px;
+    border-left: none; border-top: none;
+}
+
+/* Grids */
+.space-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.space-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Default desktop 3 columns is better for 6 roles, but user asked for 2x3 on mobile */
+    gap: 40px;
+}
+
+/* Vision Items */
+.space-item {
+    padding: 20px;
+}
+
+.icon-neon {
+    color: var(--neon-cyan);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 15px var(--neon-cyan);
+}
+
+.space-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.space-item p {
+    color: var(--text-dim);
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+/* Tech Box (Roles) */
+.tech-box {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(10, 10, 10, 0.9);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    min-height: 250px;
+}
+
+.tech-box::after {
+    content: '';
+    position: absolute;
+    top: -100%; left: 0; width: 100%; height: 20%;
+    background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.3), transparent);
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.tech-box:hover::after {
+    top: 100%;
+    opacity: 1;
+    transition: 1s ease-in-out;
+}
+
+.tech-box:hover {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 15px 40px rgba(0, 240, 255, 0.2), inset 0 0 30px rgba(0, 240, 255, 0.1);
+    transform: scale(1.05) translateY(-10px);
+    z-index: 10;
+    background: rgba(10, 15, 25, 0.95);
+}
+
+.icon-large {
+    font-size: 4.5rem;
+    color: #fff;
+    margin-bottom: 20px;
+    transition: all 0.4s ease;
+}
+
+.tech-box:hover .icon-large {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 20px var(--neon-cyan);
+    transform: scale(1.1);
+}
+
+.role-title {
+    font-size: 1.4rem;
+    color: var(--neon-cyan);
+    margin-bottom: 0;
+    transition: all 0.4s ease;
+}
+
+/* Urgent Box specific */
+.urgent-box {
+    border-color: rgba(255, 0, 85, 0.3);
+}
+
+.urgent-box:hover {
+    border-color: var(--danger);
+    box-shadow: 0 15px 40px rgba(255, 0, 85, 0.2), inset 0 0 30px rgba(255, 0, 85, 0.1);
+}
+
+.urgent-box .role-title {
+    color: var(--danger);
+}
+
+.urgent-box:hover .icon-large {
+    color: var(--danger);
+    text-shadow: 0 0 20px var(--danger);
+}
+
+.urgent-badge {
+    position: absolute;
+    top: 15px; right: 15px;
+    background: var(--danger);
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    animation: flashBadge 1s infinite alternate;
+}
+
+@keyframes flashBadge {
+    0% { opacity: 0.7; box-shadow: 0 0 5px var(--danger); }
+    100% { opacity: 1; box-shadow: 0 0 20px var(--danger); }
+}
+
+/* Hologram Modal */
+.hologram-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.hologram-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+}
+
+.modal-box {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    background: #050a15;
+    border: 2px solid var(--neon-cyan);
+    box-shadow: 0 0 50px rgba(0, 240, 255, 0.3), inset 0 0 20px rgba(0, 240, 255, 0.2);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    transform: scale(0.9) translateY(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hologram-modal.active .modal-box {
+    transform: scale(1) translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px; right: 20px;
+    background: transparent;
+    border: none;
+    color: var(--neon-cyan);
+    font-size: 2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-close:hover {
+    color: var(--danger);
+    transform: scale(1.2) rotate(90deg);
+}
+
+.modal-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.modal-content img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+}
+
+.role-details h3 {
+    font-size: 2.2rem;
+    color: var(--neon-cyan);
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+    padding-bottom: 10px;
+}
+
+.role-details ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.role-details ul li {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--text-main);
+    position: relative;
+    padding-left: 25px;
+}
+
+.role-details ul li::before {
+    content: '>';
+    position: absolute;
+    left: 0; top: 0;
+    color: var(--neon-cyan);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.p-large { padding: 60px 40px; }
+.mt-2 { margin-top: 30px; }
+
+/* QR Code styling */
+.qr-wrapper {
+    position: relative;
+    display: inline-block;
+    padding: 15px;
+    border: 2px solid rgba(0, 240, 255, 0.3);
+    background: #000;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    transition: 0.3s;
+}
+
+.qr-wrapper:hover {
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 40px rgba(0, 240, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.qr-tech {
+    width: 280px;
+    height: 280px;
+    display: block;
+    opacity: 0.9;
+}
+
+.qr-wrapper:hover .qr-tech {
+    opacity: 1;
+}
+
+.crosshair {
+    position: absolute;
+    width: 20px; height: 20px;
+    border: 3px solid var(--neon-cyan);
+}
+.top-left { top: -3px; left: -3px; border-right: none; border-bottom: none; }
+.top-right { top: -3px; right: -3px; border-left: none; border-bottom: none; }
+.bottom-left { bottom: -3px; left: -3px; border-right: none; border-top: none; }
+.bottom-right { bottom: -3px; right: -3px; border-left: none; border-top: none; }
+
+/* Footer */
+.cyber-footer {
+    text-align: center;
+    border-top: 1px dashed rgba(255,255,255,0.1);
+    padding-top: 40px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .modal-content {
+        flex-direction: column;
+    }
+    .modal-content img {
+        width: 100%;
+        height: 250px;
+    }
+}
+
+@media (max-width: 900px) {
+    .space-grid-3 {
+        grid-template-columns: 1fr;
+    }
+    .space-grid-2 {
+        grid-template-columns: repeat(2, 1fr); /* Maintain 2 columns on mobile */
+        gap: 15px;
+    }
+    .glitch-text {
+        font-size: 2.5rem;
+    }
+    .hologram-border {
+        padding: 30px 20px;
+    }
+    .mega-neon-btn {
+        font-size: 1.1rem;
+        padding: 15px 30px;
+    }
+    .tech-box {
+        min-height: 180px;
+        padding: 20px 10px;
+    }
+    .icon-large {
+        font-size: 3rem;
+    }
+    .role-title {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .space-grid-2 {
+        grid-template-columns: repeat(2, 1fr); /* Explicitly keep 2 cols even on very small screens per user request */
+    }
+    .tech-box {
+        min-height: 160px;
+    }
+}

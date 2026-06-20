@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Space Tech Team</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <!-- Background Canvas -->
+    <canvas id="space-canvas"></canvas>
+
+    <!-- Global Hologram Modal -->
+    <div id="tech-modal" class="hologram-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-box">
+            <button class="modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-content" id="modal-content-body">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <main class="space-container">
+        <!-- Hero -->
+        <header class="cyber-header">
+            <h1 class="glitch-text" data-text="ROBOTICS & EMBEDDED">ROBOTICS & EMBEDDED</h1>
+            
+            <div class="primary-cta-container">
+                <a href="https://zalo.me/g/qeabip3duz2xcrag50wu" target="_blank" class="mega-neon-btn">
+                    <i class="fa-solid fa-satellite-dish"></i> JOIN ZALO WORKSPACE
+                </a>
+            </div>
+        </header>
+
+        <!-- Vision -->
+        <section class="cyber-section">
+            <div class="hologram-border">
+                <h2>// NGUYÊN TẮC HOẠT ĐỘNG</h2>
+                <div class="space-grid-3">
+                    <div class="space-item">
+                        <i class="fa-solid fa-fire icon-neon"></i>
+                        <h3>Thái Độ Quyết Định</h3>
+                        <p>Kinh nghiệm có thể đào tạo, nhưng sự chủ động, tinh thần trách nhiệm và kỷ luật là bắt buộc.</p>
+                    </div>
+                    <div class="space-item">
+                        <i class="fa-solid fa-user-astronaut icon-neon"></i>
+                        <h3>Định Hướng Cộng Sự</h3>
+                        <p>Tìm kiếm người đồng hành dài hạn, chung mục tiêu xây dựng sản phẩm, không tuyển nhân viên làm thuê.</p>
+                    </div>
+                    <div class="space-item">
+                        <i class="fa-solid fa-scale-balanced icon-neon"></i>
+                        <h3>Minh Bạch Lợi Nhuận</h3>
+                        <p>Thời gian làm việc linh hoạt. Tài chính phân chia sòng phẳng, rõ ràng dựa trên khối lượng công việc thực tế.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Roles -->
+        <section class="cyber-section">
+            <h2 class="section-title">>> HẠNG MỤC CÔNG VIỆC TÌM KIẾM</h2>
+            <div class="space-grid-2 mobile-grid-2">
+                
+                <!-- Role 1 -->
+                <div class="tech-box urgent-box" data-tilt data-tilt-max="15">
+                    <div class="urgent-badge">URGENT</div>
+                    <i class="fa-solid fa-camera icon-large"></i>
+                    <h3 class="role-title">Media & Content</h3>
+                    <div class="role-modal-data" style="display: none;">
+                        <img src="./assets/media.png" alt="Media">
+                        <div class="role-details">
+                            <h3>Media & Content</h3>
+                            <ul>
+                                <li>Phụ trách hình ảnh, quay/edit video demo các dự án.</li>
+                                <li>Quản lý nội dung truyền thông cho team trên các nền tảng mạng xã hội.</li>
+                                <li>Phát triển các chiến dịch PR và thu hút nhân tài.</li>
+                                <li>Làm việc trực tiếp với đội kỹ thuật để hiểu và truyền tải đúng giá trị cốt lõi.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="tech-box" data-tilt data-tilt-max="15">
+                    <i class="fa-solid fa-microchip icon-large"></i>
+                    <h3 class="role-title">Hardware Assembly</h3>
+                    <div class="role-modal-data" style="display: none;">
+                        <img src="./assets/hardware.png" alt="Hardware">
+                        <div class="role-details">
+                            <h3>Hardware Assembly</h3>
+                            <ul>
+                                <li>Trực tiếp lắp ráp, hàn mạch, đi dây các mô hình robot và thiết bị IoT.</li>
+                                <li>Đọc hiểu bản vẽ cơ khí và mạch điện cơ bản.</li>
+                                <li>Gia công, bảo trì và sửa chữa phần cứng.</li>
+                                <li>Đảm bảo tính thẩm mỹ và độ bền của thiết bị khi triển khai thực tế.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Role 3 -->
+                <div class="tech-box" data-tilt data-tilt-max="15">
+                    <i class="fa-solid fa-terminal icon-large"></i>
+                    <h3 class="role-title">Embedded Firmware</h3>
+                    <div class="role-modal-data" style="display: none;">
+                        <img src="./assets/embedded.png" alt="Embedded">
+                        <div class="role-details">
+                            <h3>Embedded Firmware</h3>
+                            <ul>
+                                <li>Viết code nhúng C/C++ trên các dòng vi điều khiển (STM32, ESP32,...).</li>
+                                <li>Xử lý thuật toán điều khiển tự động hóa, giao tiếp cảm biến.</li>
+                                <li>Thiết kế hệ thống dựa trên RTOS (FreeRTOS).</li>
+                                <li>Tối ưu hóa hiệu năng và quản lý bộ nhớ của thiết bị.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 4 -->
+                <div class="tech-box" data-tilt data-tilt-max="15">
+                    <i class="fa-solid fa-layer-group icon-large"></i>
+                    <h3 class="role-title">PCB Design</h3>
+                    <div class="role-modal-data" style="display: none;">
+                        <img src="./assets/pcb.png" alt="PCB">
+                        <div class="role-details">
+                            <h3>PCB Design</h3>
+                            <ul>
+                                <li>Tính toán công suất, lựa chọn linh kiện điện tử phù hợp.</li>
+                                <li>Thiết kế sơ đồ nguyên lý (Schematic).</li>
+                                <li>Vẽ layout mạch in (PCB) tuân thủ các quy tắc chống nhiễu (EMC/EMI).</li>
+                                <li>Tạo thư viện 3D cho linh kiện và xuất file gia công.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 5 -->
+                <div class="tech-box" data-tilt data-tilt-max="15">
+                    <i class="fa-solid fa-cubes icon-large"></i>
+                    <h3 class="role-title">3D Mechanical</h3>
+                    <div class="role-modal-data" style="display: none;">
+                        <img src="./assets/mechanical.png" alt="3D">
+                        <div class="role-details">
+                            <h3>3D Mechanical</h3>
+                            <ul>
+                                <li>Sử dụng SolidWorks/Fusion 360 để thiết kế cơ khí.</li>
+                                <li>Dựng hình vỏ hộp, khung robot, bánh răng, chi tiết máy truyền động.</li>
+                                <li>Chạy mô phỏng tĩnh lực và động lực học cơ bản.</li>
+                                <li>Xuất file và vận hành máy in 3D, máy CNC để gia công.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Role 6 -->
+                <div class="tech-box" data-tilt data-tilt-max="15">
+                    <i class="fa-solid fa-bug icon-large"></i>
+                    <h3 class="role-title">QA & Testing</h3>
+                    <div class="role-modal-data" style="display: none;">
+                        <img src="./assets/qa.png" alt="QA">
+                        <div class="role-details">
+                            <h3>QA & Testing</h3>
+                            <ul>
+                                <li>Sử dụng Oscilloscope, máy đo đa năng để đo đạc thông số tín hiệu.</li>
+                                <li>Phân tích, tìm lỗi (bug) phần cứng và phần mềm.</li>
+                                <li>Xây dựng các kịch bản kiểm thử (Test cases) độ ổn định của hệ thống.</li>
+                                <li>Phối hợp cùng đội Dev để tối ưu chất lượng đầu ra.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Join -->
+        <section class="cyber-section text-center">
+            <div class="hologram-border p-large">
+                <h2>INITIATE SEQUENCE</h2>
+                <div class="qr-wrapper mt-2">
+                    <img src="./assets/QR.jpg" alt="Zalo QR" class="qr-tech">
+                    <div class="crosshair top-left"></div>
+                    <div class="crosshair top-right"></div>
+                    <div class="crosshair bottom-left"></div>
+                    <div class="crosshair bottom-right"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="cyber-footer">
+            <p>Transmission from Tech & Robotics Team &copy; 2026</p>
+        </footer>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>
