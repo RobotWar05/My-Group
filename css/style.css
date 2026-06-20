@@ -577,14 +577,18 @@ h2 {
         font-size: 1.8rem;
     }
     .modal-content {
-        gap: 20px;
+        gap: 15px;
+        align-items: center; /* Căn giữa ảnh */
     }
     .modal-content img {
-        height: 120px; /* Thu nhỏ ảnh thêm nữa để chừa chỗ cho text */
+        width: 160px; /* Cấp lại chiều rộng thành hình vuông */
+        height: 160px; /* Cấp lại chiều cao bằng chiều rộng */
+        object-fit: contain; /* Chống cắt xén ảnh */
     }
     .role-details h3 {
         font-size: 1.3rem;
         margin-bottom: 10px;
+        text-align: center;
     }
     .role-details ul li {
         font-size: 0.9rem; /* Thu nhỏ chữ để dễ đọc, không bị hoảng */
