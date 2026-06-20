@@ -321,6 +321,8 @@ h2 {
     position: relative;
     width: 90%;
     max-width: 900px;
+    max-height: 90vh; /* IMPORTANT: Giới hạn chiều cao để có thể cuộn */
+    overflow-y: auto; /* IMPORTANT: Cho phép cuộn dọc */
     background: #050a15;
     border: 2px solid var(--neon-cyan);
     box-shadow: 0 0 50px rgba(0, 240, 255, 0.3), inset 0 0 20px rgba(0, 240, 255, 0.2);
@@ -330,6 +332,18 @@ h2 {
     gap: 30px;
     transform: scale(0.9) translateY(20px);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Tùy chỉnh thanh cuộn cho Modal */
+.modal-box::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-box::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.5);
+}
+.modal-box::-webkit-scrollbar-thumb {
+    background: var(--neon-cyan);
+    border-radius: 4px;
 }
 
 .hologram-modal.active .modal-box {
@@ -345,6 +359,7 @@ h2 {
     font-size: 2rem;
     cursor: pointer;
     transition: 0.3s;
+    z-index: 10;
 }
 
 .modal-close:hover {
@@ -355,16 +370,17 @@ h2 {
 .modal-content {
     display: flex;
     gap: 40px;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .modal-content img {
-    width: 400px;
-    height: 400px;
+    width: 350px;
+    height: 350px;
     object-fit: cover;
     border: 1px solid rgba(0, 240, 255, 0.3);
     border-radius: 8px;
     box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    flex-shrink: 0;
 }
 
 .role-details h3 {
@@ -452,7 +468,9 @@ h2 {
     font-size: 0.9rem;
 }
 
-/* Responsive */
+/* -------------------------------------------
+   RESPONSIVE (Đặc biệt xử lý cho Điện thoại)
+   ------------------------------------------- */
 @media (max-width: 1100px) {
     .modal-content {
         flex-direction: column;
@@ -468,7 +486,7 @@ h2 {
         grid-template-columns: 1fr;
     }
     .space-grid-2 {
-        grid-template-columns: repeat(2, 1fr); /* Maintain 2 columns on mobile */
+        grid-template-columns: repeat(2, 1fr); 
         gap: 15px;
     }
     .glitch-text {
@@ -481,6 +499,7 @@ h2 {
         font-size: 1.1rem;
         padding: 15px 30px;
     }
+    /* Thu nhỏ tech-box trên màn hình vừa */
     .tech-box {
         min-height: 180px;
         padding: 20px 10px;
@@ -494,10 +513,66 @@ h2 {
 }
 
 @media (max-width: 480px) {
+    /* Ép 2 cột trên điện thoại nhỏ */
     .space-grid-2 {
-        grid-template-columns: repeat(2, 1fr); /* Explicitly keep 2 cols even on very small screens per user request */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
+    
+    /* Thu nhỏ Tech Box để không chiếm hết màn hình */
     .tech-box {
-        min-height: 160px;
+        min-height: 120px;
+        padding: 15px 5px;
+    }
+    .icon-large {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    .role-title {
+        font-size: 0.9rem;
+    }
+    .urgent-badge {
+        font-size: 0.6rem;
+        padding: 3px 6px;
+        top: 5px; right: 5px;
+    }
+
+    /* Thu nhỏ Typography chung */
+    .glitch-text {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    /* MODAL ĐIỆN THOẠI CHUẨN */
+    .modal-box {
+        width: 95%;
+        padding: 20px;
+        gap: 15px;
+    }
+    .modal-close {
+        top: 10px; right: 10px;
+        font-size: 1.8rem;
+    }
+    .modal-content {
+        gap: 20px;
+    }
+    .modal-content img {
+        height: 150px; /* Thu nhỏ ảnh để chừa chỗ cho text */
+    }
+    .role-details h3 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    .role-details ul li {
+        font-size: 0.95rem; /* Thu nhỏ chữ để dễ đọc, không bị hoảng */
+        line-height: 1.5;
+        margin-bottom: 5px;
+    }
+    
+    .qr-tech {
+        width: 200px;
+        height: 200px;
     }
 }
