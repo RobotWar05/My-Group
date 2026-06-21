@@ -129,15 +129,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         reset() {
-            this.isLeftToRight = Math.random() > 0.5;
-            this.x = this.isLeftToRight ? -200 : width + 200;
-            this.y = Math.random() * height;
+            // Spawn ở một góc ngẫu nhiên (360 độ) ngoài rìa màn hình
+            const spawnAngle = Math.random() * Math.PI * 2;
+            const spawnRadius = Math.max(width, height) + 150;
+            this.x = (width / 2) + Math.cos(spawnAngle) * spawnRadius;
+            this.y = (height / 2) + Math.sin(spawnAngle) * spawnRadius;
             
-            // Bay chậm hơn trên điện thoại
-            const speedFactor = isMobile ? 0.4 : 1.0;
-            this.speedX = (Math.random() * 7 + 4) * speedFactor * (this.isLeftToRight ? 1 : -1);
-            this.speedY = (Math.random() - 0.5) * 3 * speedFactor;
-            this.angle = Math.atan2(this.speedY, this.speedX);
+            // Bay cực nhanh trên cả PC và Mobile
+            const speedFactor = isMobile ? 1.5 : 1.0; 
+            const speedMag = (Math.random() * 7 + 5) * speedFactor;
+            
+            // Bay hướng ngược lại góc spawn (bay xuyên qua tâm)
+            const travelAngle = spawnAngle + Math.PI + (Math.random() - 0.5) * 0.8;
+            this.speedX = Math.cos(travelAngle) * speedMag;
+            this.speedY = Math.sin(travelAngle) * speedMag;
+            this.angle = travelAngle;
             
             // Ưu tiên tàu bay to hơn chút trên cả PC và Mobile
             const baseScale = isMobile ? 0.5 : 0.8;
@@ -146,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.shipType = Math.floor(Math.random() * 4); // 4 Kiểu tàu khác nhau
             
             this.active = false;
-            setTimeout(() => { this.active = true; }, Math.random() * 5000);
+            setTimeout(() => { this.active = true; }, Math.random() * 4000);
             
             const colors = ['#00f0ff', '#bd00ff', '#ff003c', '#ffea00'];
             this.coreColor = colors[Math.floor(Math.random() * colors.length)];
@@ -469,8 +475,8 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < finalNumStars; i++) stars.push(new Star());
         
         drones = [];
-        const numDrones = isMobile ? 2 : 7; // Chỉ 2 tàu bay cho gọn
-        for (let i = 0; i < numDrones; i++) drones.push(new CyberDrone()); // 7 tàu đa hình
+        const numDrones = isMobile ? 5 : 7; // Tăng lên 5 tàu bay cực ngầu trên điện thoại
+        for (let i = 0; i < numDrones; i++) drones.push(new CyberDrone()); // tàu đa hình
 
         shootingStars = [];
         const numSS = isMobile ? 1 : 4; // 1 sao chổi
