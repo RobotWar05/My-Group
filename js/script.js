@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             this.radius = 1.5;
         }
         update() {
-            this.z -= 3; // Bay nhanh hơn
+            this.z -= isMobile ? 1 : 3; // Bay cực chậm trên điện thoại
             if (this.z <= 0) {
                 this.x = Math.random() * width - width / 2;
                 this.y = Math.random() * height - height / 2;
@@ -82,8 +82,9 @@ document.addEventListener("DOMContentLoaded", () => {
         reset() {
             this.x = Math.random() * width * 1.5;
             this.y = -100;
-            this.speedX = -(Math.random() * 20 + 15);
-            this.speedY = Math.random() * 20 + 15;
+            const speedBase = isMobile ? 10 : 20;
+            this.speedX = -(Math.random() * speedBase + (isMobile ? 8 : 15));
+            this.speedY = Math.random() * speedBase + (isMobile ? 8 : 15);
             this.opacity = 0;
             this.active = false;
             setTimeout(() => { this.active = true; }, Math.random() * 4000 + 1000);
@@ -132,9 +133,10 @@ document.addEventListener("DOMContentLoaded", () => {
             this.x = this.isLeftToRight ? -200 : width + 200;
             this.y = Math.random() * height;
             
-            // Bay nhanh hơn
-            this.speedX = (Math.random() * 7 + 4) * (this.isLeftToRight ? 1 : -1);
-            this.speedY = (Math.random() - 0.5) * 3;
+            // Bay chậm hơn trên điện thoại
+            const speedFactor = isMobile ? 0.4 : 1.0;
+            this.speedX = (Math.random() * 7 + 4) * speedFactor * (this.isLeftToRight ? 1 : -1);
+            this.speedY = (Math.random() - 0.5) * 3 * speedFactor;
             this.angle = Math.atan2(this.speedY, this.speedX);
             
             // Ưu tiên tàu bay to hơn chút trên cả PC và Mobile
@@ -389,8 +391,8 @@ document.addEventListener("DOMContentLoaded", () => {
             this.x = Math.random() * width;
             this.y = initial ? Math.random() * height : height + 100;
             
-            // Tốc độ chậm hơn trên điện thoại để đỡ spam
-            const speedFactor = isMobile ? 0.6 : 1.0;
+            // Tốc độ cực chậm trên điện thoại
+            const speedFactor = isMobile ? 0.2 : 1.0;
             this.speedY = -(Math.random() * 1.5 + 0.5) * speedFactor; 
             this.speedX = (Math.random() - 0.5) * 1.0 * speedFactor;
             this.time = Math.random() * 100; // Dùng cho múa lượn (Sine wave)
@@ -424,16 +426,16 @@ document.addEventListener("DOMContentLoaded", () => {
             this.color = Math.random() > 0.5 ? '#00f0ff' : '#bd00ff';
         }
         update() {
-            this.time += 0.05;
+            this.time += (isMobile ? 0.01 : 0.05); // Lượn chậm trên mobile
             // Di chuyển lượn sóng ngang (Sine)
             this.x += Math.sin(this.time) * 1.0 + this.speedX;
             this.y += this.speedY;
 
             if (this.fadeIn) {
-                this.opacity += 0.005;
+                this.opacity += (isMobile ? 0.002 : 0.005);
                 if (this.opacity >= this.maxOpacity) this.fadeIn = false;
             } else {
-                if (this.y < 150) this.opacity -= 0.005; // Fade out sớm hơn khi lên cao
+                if (this.y < 150) this.opacity -= (isMobile ? 0.002 : 0.005); // Fade out sớm hơn khi lên cao
             }
 
             if (this.y < -50 || (this.opacity <= 0 && !this.fadeIn)) {
@@ -463,23 +465,23 @@ document.addEventListener("DOMContentLoaded", () => {
         resize();
 
         stars = [];
-        const finalNumStars = isMobile ? 150 : 400;
+        const finalNumStars = isMobile ? 120 : 400; // Giảm bớt sao
         for (let i = 0; i < finalNumStars; i++) stars.push(new Star());
         
         drones = [];
-        const numDrones = isMobile ? 3 : 7;
+        const numDrones = isMobile ? 2 : 7; // Chỉ 2 tàu bay cho gọn
         for (let i = 0; i < numDrones; i++) drones.push(new CyberDrone()); // 7 tàu đa hình
 
         shootingStars = [];
-        const numSS = isMobile ? 2 : 4;
-        for (let i = 0; i < numSS; i++) shootingStars.push(new ShootingStar()); // 4 sao chổi
+        const numSS = isMobile ? 1 : 4; // 1 sao chổi
+        for (let i = 0; i < numSS; i++) shootingStars.push(new ShootingStar());
 
         geometries = [];
-        const numGeo = isMobile ? 10 : 25;
-        for (let i = 0; i < numGeo; i++) geometries.push(new TechGeometry()); // 25 khối 3D
+        const numGeo = isMobile ? 0 : 25; // ẨN TẤT CẢ hình 3D trên điện thoại
+        for (let i = 0; i < numGeo; i++) geometries.push(new TechGeometry());
 
         mathFormulas = [];
-        const numMath = isMobile ? 8 : 25; // Giảm spam trên mobile
+        const numMath = isMobile ? 3 : 25; // CHỈ HIỂN THỊ 3 CÔNG THỨC siêu chậm trên mobile
         for (let i = 0; i < numMath; i++) mathFormulas.push(new FloatingMath()); 
     }
 
