@@ -129,9 +129,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         reset() {
-            // Spawn ở một góc ngẫu nhiên (360 độ) ngoài rìa màn hình
+            // Sửa lỗi: Đảm bảo spawnRadius nhỏ hơn kill bounds để tàu không bị biến mất ngay lập tức
             const spawnAngle = Math.random() * Math.PI * 2;
-            const spawnRadius = Math.max(width, height) + 150;
+            const spawnRadius = Math.max(width, height) / 2 + 100;
             this.x = (width / 2) + Math.cos(spawnAngle) * spawnRadius;
             this.y = (height / 2) + Math.sin(spawnAngle) * spawnRadius;
             
@@ -183,7 +183,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (p.life <= 0) this.particles.splice(i, 1);
             }
 
-            if (this.x < -300 || this.x > width + 300 || this.y < -300 || this.y > height + 300) {
+            // Kill bounds đủ lớn để tàu có thể bay ra ngoài hẳn màn hình
+            const bounds = Math.max(width, height) + 200;
+            if (this.x < -bounds || this.x > width + bounds || this.y < -bounds || this.y > height + bounds) {
                 this.active = false;
                 this.reset();
             }
