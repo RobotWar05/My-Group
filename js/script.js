@@ -38,11 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const ctx = canvas.getContext('2d');
     
     let width, height;
-    const numStars = 400; // Mật độ sao cao hơn
+    let isMobile = false;
 
     function resize() {
         width = canvas.width = window.innerWidth;
         height = canvas.height = window.innerHeight;
+        isMobile = width < 768;
     }
 
     // 1. Các vì sao trôi
@@ -136,7 +137,9 @@ document.addEventListener("DOMContentLoaded", () => {
             this.speedY = (Math.random() - 0.5) * 3;
             this.angle = Math.atan2(this.speedY, this.speedX);
             
-            this.scale = Math.random() * 0.7 + 0.3;
+            // Ưu tiên tàu bay to hơn chút trên cả PC và Mobile
+            const baseScale = isMobile ? 0.5 : 0.8;
+            this.scale = Math.random() * 0.4 + baseScale;
             this.particles = []; 
             this.shipType = Math.floor(Math.random() * 4); // 4 Kiểu tàu khác nhau
             
@@ -285,7 +288,9 @@ document.addEventListener("DOMContentLoaded", () => {
             this.rotSpeedY = (Math.random() - 0.5) * 0.05;
             this.rotSpeedZ = (Math.random() - 0.5) * 0.05;
 
-            this.size = Math.random() * 35 + 15;
+            // Nhỏ lại trên mobile
+            const baseSize = isMobile ? 10 : 15;
+            this.size = Math.random() * (isMobile ? 15 : 35) + baseSize;
 
             const shapes = ['cube', 'tetrahedron', 'octahedron', 'diamond'];
             this.shapeType = shapes[Math.floor(Math.random() * shapes.length)];
@@ -384,9 +389,10 @@ document.addEventListener("DOMContentLoaded", () => {
             this.x = Math.random() * width;
             this.y = initial ? Math.random() * height : height + 100;
             
-            // Tốc độ nhanh hơn
-            this.speedY = -(Math.random() * 1.5 + 0.5); 
-            this.speedX = (Math.random() - 0.5) * 1.0;
+            // Tốc độ chậm hơn trên điện thoại để đỡ spam
+            const speedFactor = isMobile ? 0.6 : 1.0;
+            this.speedY = -(Math.random() * 1.5 + 0.5) * speedFactor; 
+            this.speedX = (Math.random() - 0.5) * 1.0 * speedFactor;
             this.time = Math.random() * 100; // Dùng cho múa lượn (Sine wave)
             
             const formulas = [
@@ -407,7 +413,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 'P = I²R'
             ];
             this.text = formulas[Math.floor(Math.random() * formulas.length)];
-            this.fontSize = Math.random() * 14 + 12; // Chữ to rõ hơn
+            
+            // Nhỏ lại phù hợp khung hình trên điện thoại
+            const baseFontSize = isMobile ? 8 : 12;
+            this.fontSize = Math.random() * (isMobile ? 6 : 14) + baseFontSize; 
+            
             this.opacity = 0;
             this.maxOpacity = Math.random() * 0.4 + 0.1; // Sáng hơn
             this.fadeIn = true;
@@ -449,20 +459,28 @@ document.addEventListener("DOMContentLoaded", () => {
     let mathFormulas = [];
 
     function initElements() {
+        // Cập nhật lại isMobile trước khi init
+        resize();
+
         stars = [];
-        for (let i = 0; i < numStars; i++) stars.push(new Star());
+        const finalNumStars = isMobile ? 150 : 400;
+        for (let i = 0; i < finalNumStars; i++) stars.push(new Star());
         
         drones = [];
-        for (let i = 0; i < 7; i++) drones.push(new CyberDrone()); // 7 tàu đa hình
+        const numDrones = isMobile ? 3 : 7;
+        for (let i = 0; i < numDrones; i++) drones.push(new CyberDrone()); // 7 tàu đa hình
 
         shootingStars = [];
-        for (let i = 0; i < 4; i++) shootingStars.push(new ShootingStar()); // 4 sao chổi
+        const numSS = isMobile ? 2 : 4;
+        for (let i = 0; i < numSS; i++) shootingStars.push(new ShootingStar()); // 4 sao chổi
 
         geometries = [];
-        for (let i = 0; i < 25; i++) geometries.push(new TechGeometry()); // 25 khối 3D
+        const numGeo = isMobile ? 10 : 25;
+        for (let i = 0; i < numGeo; i++) geometries.push(new TechGeometry()); // 25 khối 3D
 
         mathFormulas = [];
-        for (let i = 0; i < 25; i++) mathFormulas.push(new FloatingMath()); // 25 công thức Toán
+        const numMath = isMobile ? 8 : 25; // Giảm spam trên mobile
+        for (let i = 0; i < numMath; i++) mathFormulas.push(new FloatingMath()); 
     }
 
     function animate() {
